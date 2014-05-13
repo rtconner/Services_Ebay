@@ -273,7 +273,7 @@ class Item extends \Services\Ebay\Model
     *
     * This adds a new auction with exactly the same item data
     *
-    * @return   object Services_Ebay_Model_Item
+    * @return   object \Services\Ebay\Model\Item
     * @see      Services_Ebay_Call_AddSecondChanceItem
     */
     public function AddSecondChance($RecipientBidderUserId, $Duration = 'Days_3', $BuyItNowPrice = null)

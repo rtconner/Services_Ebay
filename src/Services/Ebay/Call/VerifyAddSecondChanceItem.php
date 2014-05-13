@@ -31,7 +31,7 @@ class VerifyAddSecondChanceItem extends \Services\Ebay\Call\AddSecondChanceItem
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   array
     */
     public function call(\Services\Ebay\Session $session)

@@ -43,7 +43,7 @@ class Model implements ArrayAccess
    /**
     * optional session, used to send API calls
     *
-    * @var  object Services_Ebay_Session
+    * @var  object \Services\Ebay\Session
     */
     protected $session;
     
@@ -57,7 +57,7 @@ class Model implements ArrayAccess
    /**
     * store the static cache for all models of this type
     *
-    * @var  object Services_Ebay_Cache
+    * @var  object \Services\Ebay\Cache
     */
     protected static $cache = null;
 
@@ -91,7 +91,7 @@ class Model implements ArrayAccess
         }
         
         // store the session
-        if( $session instanceof Services_Ebay_Session) {
+        if( $session instanceof \Services\Ebay\Session) {
             $this->session = $session;
         }
         $this->eBayProperties = $this->properties;
@@ -114,7 +114,7 @@ class Model implements ArrayAccess
    /**
     * set the session
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     */
     public function setSession(\Services\Ebay\Session $session)
     {
@@ -124,9 +124,9 @@ class Model implements ArrayAccess
    /**
     * set the cache
     *
-    * @param    object Services_Ebay_Cache
+    * @param    object \Services\Ebay\Cache
     */
-    static public function setCache(Services_Ebay_Cache $cache)
+    static public function setCache(\Services\Ebay\Cache $cache)
     {
         self::$cache = $cache;
     }

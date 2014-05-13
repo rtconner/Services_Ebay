@@ -12,7 +12,7 @@ class FeedbackEntry extends \Services\Ebay\Model
    /**
     * get the item, for which the feedback was given
     *
-    * @return object Services_Ebay_Model_Item
+    * @return object \Services\Ebay\Model\Item
     */
     public function getItem()
     {

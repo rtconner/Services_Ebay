@@ -3,7 +3,7 @@
 use \Services\Ebay\Exception as Services_Ebay_Exception;
 
 /**
- * Services_Ebay_API_Exception
+ * \Services\Ebay\Transport\Exception
  *
  * API Failure
  *

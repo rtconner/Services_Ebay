@@ -19,7 +19,7 @@ class ItemList extends \Services\Ebay\Model implements IteratorAggregate
     * create a new item list
     *
     * @param    array   properties
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     */
     public function __construct($props, $session = null)
     {

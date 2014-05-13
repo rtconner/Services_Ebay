@@ -43,7 +43,7 @@ class Feedback extends \Services\Ebay\Model implements IteratorAggregate
     * get one entry of the feedback list
     *
     * @param    int
-    * @return   object Services_Ebay_Model_FeedbackEntry
+    * @return   object \Services\Ebay\Model\FeedbackEntry
     */
     public function getEntry($pos)
     {

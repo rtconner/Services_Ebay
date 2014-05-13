@@ -27,7 +27,7 @@ $userCache = \Services\Ebay::loadCache('Filesystem', array('path' => './cache'))
 $userCache->setExpiry('Static', 15);
 
 // use this cache for all user models
-Services_Ebay_Model_User::setCache($userCache);
+\Services\Ebay\Model\User::setCache($userCache);
 
 // load a new user model
 $user = \Services\Ebay::loadModel('User', 'superman-74', $session);

@@ -9,12 +9,6 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/VerifyAddItem/VerifyAddItemLogic.htm
  */
-
-/**
- * This call is based on AddItem
- */
-require_once SERVICES_EBAY_BASEDIR.'/Ebay/Call/AddItem.php';
-
  
 /**
  * Verify an item before adding it
@@ -37,12 +31,12 @@ class VerifyAddItem extends \Services\Ebay\Call\AddItem
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   string
     */
     public function call(\Services\Ebay\Session $session)
     {
-        $return = Services_Ebay_Call::call($session);
+        $return = \Services\Ebay\Call::call($session);
         if (isset($return['Item'])) {
             return $return['Item'];
         }

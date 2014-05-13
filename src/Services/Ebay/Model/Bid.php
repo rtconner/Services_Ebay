@@ -11,7 +11,7 @@ class Bid extends \Services\Ebay\Model
     /**
      * The bidder.
      * 
-     * @var Services_Ebay_Model_User the bidding user
+     * @var \Services\Ebay\Model\User the bidding user
      */
     private $user;
     
@@ -41,7 +41,7 @@ class Bid extends \Services\Ebay\Model
      *  $user->Get($itemId);
      * </code>
      * 
-     * @return  Services_Ebay_Model_User    the user
+     * @return  \Services\Ebay\Model\User    the user
      */
     public function getBidder() {
         return $this->user;

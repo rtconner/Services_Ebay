@@ -104,7 +104,7 @@ abstract class Call {
    /**
     * make the API call
     *
-    * @param  object Services_Ebay_Session
+    * @param  object \Services\Ebay\Session
     * @param  boolean  flag to indicate, whether the result should be parsed using XML_Serializer
     * @return array
     */

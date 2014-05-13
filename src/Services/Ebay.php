@@ -10,6 +10,8 @@
  * @author   Robert Conner <rtconner@gmail.com>
  */
 
+define('SERVICES_EBAY_BASEDIR', dirname(__FILE__));
+
 /**
  * Services/Ebay.php
  *
@@ -242,7 +244,7 @@ class Ebay {
    /**
     * session used for the calls
     *
-    * @var  object Services_Ebay_Session
+    * @var  object \Services\Ebay\Session
     */
     private $session = null;
 
@@ -256,7 +258,7 @@ class Ebay {
    /**
     * create Services Ebay helper class
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     */
     public function __construct(\Services\Ebay\Session $session)
     {
@@ -273,7 +275,7 @@ class Ebay {
     *                       If you choose to use ISO-8859-1, Services_Ebay will automatically
     *                       encode and decode your data to and from UTF-8, as eBay only
     *                       allows UTF-8 encoded data
-    * @return   object Services_Ebay_Session
+    * @return   object \Services\Ebay\Session
     */
     public static function getSession($devId, $appId, $certId, $encoding = 'ISO-8859-1')
     {

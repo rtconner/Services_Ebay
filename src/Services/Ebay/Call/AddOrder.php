@@ -42,7 +42,7 @@ class AddOrder extends \Services\Ebay\Call
     {
         $order = $args[0];
         
-        if (!$order instanceof Services_Ebay_Model_Order ) {
+        if (!$order instanceof \Services\Ebay\Model\Order ) {
             throw new \Services\Ebay\Exception( 'No order passed.' );
         }
         $this->args['Order'] = $order->toArray();
@@ -51,7 +51,7 @@ class AddOrder extends \Services\Ebay\Call
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   string
     */
     public function call(\Services\Ebay\Session $session)

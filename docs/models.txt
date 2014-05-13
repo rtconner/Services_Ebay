@@ -13,7 +13,7 @@ Public Methods:
  
  Useful properties:
  
-  $item->Seller is an instance of Services_Ebay_Model_User
+  $item->Seller is an instance of \Services\Ebay\Model\User
  
  3. Feedback  -  Stores information about User Feedback
  

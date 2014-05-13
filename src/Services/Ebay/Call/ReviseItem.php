@@ -14,7 +14,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/ReviseItem/ReviseItemLogic.htm
- * @see     Services_Ebay_Model_Item::Revise()
+ * @see     \Services\Ebay\Model\Item::Revise()
  */
 class ReviseItem extends \Services\Ebay\Call 
 {
@@ -49,7 +49,7 @@ class ReviseItem extends \Services\Ebay\Call
     {
         $item = $args[0];
         
-        if (!$item instanceof Services_Ebay_Model_Item) {
+        if (!$item instanceof \Services\Ebay\Model\Item) {
             throw new \Services\Ebay\Exception( 'No item passed.' );
         }
         
@@ -70,7 +70,7 @@ class ReviseItem extends \Services\Ebay\Call
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   string
     */
     public function call(\Services\Ebay\Session $session)

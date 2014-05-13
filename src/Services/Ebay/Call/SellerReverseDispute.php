@@ -38,7 +38,7 @@ class SellerReverseDispute extends \Services\Ebay\Call
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   boolean
     */
     public function call(\Services\Ebay\Session $session)

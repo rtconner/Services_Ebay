@@ -67,7 +67,7 @@ class Preferences extends \Services\Ebay\Model
     */
     public function AddPreference($Name, $Value = null, $ValueType = null )
     {
-        if ($Name instanceof Services_Ebay_Model_Preferences) {
+        if ($Name instanceof \Services\Ebay\Model\Preferences) {
         	array_push($this->preferenceSets, $Name);
         } else {
             array_push($this->preferences, array(

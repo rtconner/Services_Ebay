@@ -20,9 +20,9 @@ class DisputeList extends \Services\Ebay\Model implements IteratorAggregate
     * create a new list of disputes
     *
     * @param    array   return value from GetUserDisputes
-    * @param    Services_Ebay_Session
+    * @param    \Services\Ebay\Session
     */
-    public function __construct($props, $session = null)
+    public function __construct($props, \Services\Ebay\Session $session = null)
     {
         if (isset($props['DisputeArray'])) {
             $disputes = $props['DisputeArray'];

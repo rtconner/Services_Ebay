@@ -19,7 +19,7 @@
  *
  * @todo    add some checks before writing files
  */
-class Filesystem extends Services_Ebay_Cache 
+class Filesystem extends \Services\Ebay\Cache 
 {
    /**
     * load a model from cache

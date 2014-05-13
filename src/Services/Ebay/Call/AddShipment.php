@@ -41,7 +41,7 @@ class AddShipment extends \Services\Ebay\Call
     {
         $item = $args[0];
         
-        if (!$item instanceof Services_Ebay_Model_Shipment ) {
+        if (!$item instanceof \Services\Ebay\Model\Shipment ) {
             throw new \Services\Ebay\Exception( 'No shipment passed.' );
         }
         $this->item = $item;
@@ -51,7 +51,7 @@ class AddShipment extends \Services\Ebay\Call
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   string
     */
     public function call(\Services\Ebay\Session $session)

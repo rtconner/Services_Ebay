@@ -61,7 +61,7 @@ class AddItem extends \Services\Ebay\Call
    /**
     * item that should be added
     *
-    * @var  object Services_Ebay_Model_Item
+    * @var  object \Services\Ebay\Model\Item
     */
     protected $item;
 
@@ -74,7 +74,7 @@ class AddItem extends \Services\Ebay\Call
     {
         $item = $args[0];
         
-        if (!$item instanceof Services_Ebay_Model_Item) {
+        if (!$item instanceof \Services\Ebay\Model\Item) {
             throw new \Services\Ebay\Exception( 'No item passed.' );
         }
         
@@ -84,10 +84,10 @@ class AddItem extends \Services\Ebay\Call
    /**
     * set the item that should be added
     *
-    * @param    Services_Ebay_Model_Item
+    * @param    \Services\Ebay\Model\Item
     * @return   boolean
     */
-    public function setItem(Services_Ebay_Model_Item $item)
+    public function setItem(\Services\Ebay\Model\Item $item)
     {
         $this->item = $item;
         $this->args = array_merge( $this->args, $item->toArray() );
@@ -98,7 +98,7 @@ class AddItem extends \Services\Ebay\Call
    /**
     * make the API call
     *
-    * @param    object Services_Ebay_Session
+    * @param    object \Services\Ebay\Session
     * @return   string
     */
     public function call(\Services\Ebay\Session $session)
