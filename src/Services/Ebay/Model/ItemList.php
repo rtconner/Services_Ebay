@@ -1,11 +1,12 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a item list
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_ItemList extends Services_Ebay_Model implements IteratorAggregate
+class ItemList extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * items of the list
@@ -28,7 +29,7 @@ class Services_Ebay_Model_ItemList extends Services_Ebay_Model implements Iterat
                     $props['ItemArray']['Item'] = array($props['ItemArray']['Item']);
                 }
                 foreach ($props['ItemArray']['Item'] as $item) {
-                    array_push( $this->items, Services_Ebay::loadModel('Item', $item, $session) );
+                    array_push( $this->items, \Services\Ebay::loadModel('Item', $item, $session) );
                 }
             }
             unset($props['ItemArray']);

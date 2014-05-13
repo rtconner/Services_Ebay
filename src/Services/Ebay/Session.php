@@ -90,7 +90,7 @@ class Session
    /**
     * transport driver
     *
-    * @var  object Services_Ebay_Transport
+    * @var  object Services\Ebay\Transport
     */
     private $transport;
     
@@ -240,9 +240,9 @@ class Session
     * set the debug mode
     *
     * Possible values are:
-    * - Services_Ebay_Session::DEBUG_NONE
-    * - Services_Ebay_Session::DEBUG_STORE
-    * - Services_Ebay_Session::DEBUG_PRINT
+    * - Services\Ebay\Session::DEBUG_NONE
+    * - Services\Ebay\Session::DEBUG_STORE
+    * - Services\Ebay\Session::DEBUG_PRINT
     *
     * @param    integer
     * @see      getWire()
@@ -291,8 +291,8 @@ class Session
     * @param    string
     *
     * Possible values are:
-    * - Services_Ebay_Session::URL_SANDBOX
-    * - Services_Ebay_Session::URL_PRODUCTION
+    * - Services\Ebay\Session::URL_SANDBOX
+    * - Services\Ebay\Session::URL_PRODUCTION
     * - Other URLs as applicable
     *
     */
@@ -339,7 +339,7 @@ class Session
     * @param    array|null  parameters of the request
     * @return   string      XML request
     */
-    public function buildRequestBody( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN )
+    public function buildRequestBody( $verb, $params = array(), $authType = \Services\Ebay::AUTH_TYPE_TOKEN )
     {
         $this->opts['rootName'] = $verb.'Request';
         $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
@@ -355,22 +355,22 @@ class Session
         }
 
         switch ($authType) {
-            case Services_Ebay::AUTH_TYPE_TOKEN:
+            case \Services\Ebay::AUTH_TYPE_TOKEN:
                 if (empty($this->token)) {
-                    throw new Services_Ebay_Auth_Exception('No authentication token set.');
+                    throw new \Services\Ebay\Auth\Exception('No authentication token set.');
                 }
                 $request['RequesterCredentials']['eBayAuthToken'] = $this->token;
                 break;
-            case Services_Ebay::AUTH_TYPE_USER:
+            case \Services\Ebay::AUTH_TYPE_USER:
                 if (empty($this->requestUserId) || empty($this->requestPassword)) {
-                    throw new Services_Ebay_Auth_Exception('No authentication data (username and password) set.');
+                    throw new \Services\Ebay\Auth\Exception('No authentication data (username and password) set.');
                 }
                 $request['RequesterCredentials']['Username']   = $this->requestUserId;
                 $request['RequesterCredentials']['Password']   = $this->requestPassword;
                 break;
-            case Services_Ebay::AUTH_TYPE_NONE:
+            case \Services\Ebay::AUTH_TYPE_NONE:
                 if (empty($this->requestUserId)) {
-                    throw new Services_Ebay_Auth_Exception('No username has been set.');
+                    throw new \Services\Ebay\Auth\Exception('No username has been set.');
                 }
                 $request['RequesterCredentials']['Username']   = $this->requestUserId;
                 break;
@@ -398,7 +398,7 @@ class Session
     * @return   array       response
     * @todo     add real error handling
     */
-    public function sendRequest( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN, $parseResult = true )
+    public function sendRequest( $verb, $params = array(), $authType = \Services\Ebay::AUTH_TYPE_TOKEN, $parseResult = true )
     {
         $this->wire = '';
 
@@ -424,13 +424,7 @@ class Session
                             'Content-Length'                 => strlen( $body )                                                     // Recommended. Specifies the size of the data (i.e., the length of the XML string) you are sending. This is used by eBay to determine how much data to read from the stream.
                         );
 
-        $file  = SERVICES_EBAY_BASEDIR.'/Ebay/Transport/'.$this->transportDriver.'.php';
-        $class = 'Services_Ebay_Transport_'.$this->transportDriver;
-
-        @include_once $file;
-        if (!class_exists($class)) {
-            throw new Services_Ebay_Transport_Exception('Could not load selected transport driver.');            
-        }
+        $class = '\Services\Ebay\Transport\''.$this->transportDriver;
         $tp = new $class();
         
         if ($this->debug > 0) {
@@ -466,7 +460,7 @@ class Session
             if (isset($result['Errors'])) {
                 if (isset($result['Errors'][0])) {
                     foreach ($result['Errors'] as $error) {
-                        $tmp = new Services_Ebay_Error($error);
+                        $tmp = new \Services\Ebay\Error($error);
 
                         // last errors
                         array_push($errors, $tmp);
@@ -479,7 +473,7 @@ class Session
                     foreach ($result['Errors'] as $key=>$value) {
                         $error[$key] = $value;
                     }
-                    $tmp = new Services_Ebay_Error($error);
+                    $tmp = new \Services\Ebay\Error($error);
 
                     array_push($errors, $tmp);
                     array_push($this->errors, $tmp);
@@ -497,10 +491,10 @@ class Session
                 	array_push($severe, $error);
                 }
                 if (!empty($severe)) {
-                	throw new Services_Ebay_API_Exception($message, $severe);
+                	throw new \Services\Ebay\API\Exception($message, $severe);
                 }
             } else {
-                throw new Services_Ebay_API_Exception('Unknown error occured.');
+                throw new \Services\Ebay\API\Exception('Unknown error occured.');
             }
         }
         return $result;

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace \Services\Ebay\Call;
+
 /**
  * Verify a second chance item before adding it
  *
@@ -8,12 +9,6 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/VerifyAddSecondChanceItem/VerifyAddSecondChanceItemLogic.htm
  */
-
-/**
- * This call is based on AddSecondChanceItem
- */
-require_once SERVICES_EBAY_BASEDIR.'/Ebay/Call/AddSecondChanceItem.php';
-
  
 /**
  * Verify an item before adding it
@@ -24,7 +19,7 @@ require_once SERVICES_EBAY_BASEDIR.'/Ebay/Call/AddSecondChanceItem.php';
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/VerifyAddSecondChanceItem/VerifyAddSecondChanceItemLogic.htm
  */
-class Services_Ebay_Call_VerifyAddSecondChanceItem extends Services_Ebay_Call_AddSecondChanceItem
+class VerifyAddSecondChanceItem extends \Services\Ebay\Call\AddSecondChanceItem
 {
    /**
     * verb of the API call
@@ -39,13 +34,12 @@ class Services_Ebay_Call_VerifyAddSecondChanceItem extends Services_Ebay_Call_Ad
     * @param    object Services_Ebay_Session
     * @return   array
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
-        $return = Services_Ebay_Call::call($session);
+        $return = \Services\Ebay\Call::call($session);
         if (isset($return['Item'])) {
             return $return['Item'];
         }
         return false;
     }
 }
-?>

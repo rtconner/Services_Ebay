@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for My eBay
  *
@@ -6,7 +7,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @todo    implement some helper methods to work with the lists
  */
-class Services_Ebay_Model_MyeBay extends Services_Ebay_Model implements IteratorAggregate
+class MyeBay extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * available item lists
@@ -24,7 +25,7 @@ class Services_Ebay_Model_MyeBay extends Services_Ebay_Model implements Iterator
     public function __construct($props, $session = null)
     {
         foreach ($props as $list => $data) {
-        	$this->lists[$list] = Services_Ebay::loadModel('ItemList', $data, $session);
+        	$this->lists[$list] = \Services\Ebay::loadModel('ItemList', $data, $session);
         }
     }
 

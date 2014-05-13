@@ -116,7 +116,7 @@ class Model implements ArrayAccess
     *
     * @param    object Services_Ebay_Session
     */
-    public function setSession(Services_Ebay_Session $session)
+    public function setSession(\Services\Ebay\Session $session)
     {
         $this->session = $session;
     }

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get all items a user is selling
  *
@@ -10,7 +11,7 @@
  * @todo    test paginating
  * @todo    build item list model
  */
-class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call 
+class GetSellerList extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -49,10 +50,10 @@ class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('ItemList', $return, $session);
+        return \Services\Ebay::loadModel('ItemList', $return, $session);
     }
 }
 ?>

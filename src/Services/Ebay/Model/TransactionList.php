@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a list of transactions
  *
@@ -9,7 +10,7 @@
  * @todo    improve handling of transactions (possibly store the itemId in each transaction object)
  * @todo    build seller object
  */
-class Services_Ebay_Model_TransactionList extends Services_Ebay_Model implements IteratorAggregate
+class TransactionList extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * transactions
@@ -30,7 +31,7 @@ class Services_Ebay_Model_TransactionList extends Services_Ebay_Model implements
                 $transactions['Transactions']['Transaction'] = array( $transactions['Transactions']['Transaction'] );
             }
             foreach ($transactions['Transactions']['Transaction'] as $tmp) {
-                array_push($this->transactions, Services_Ebay::loadModel('Transaction', $tmp, $session));
+                array_push($this->transactions, \Services\Ebay::loadModel('Transaction', $tmp, $session));
             }
         	unset($transactions['Transactions']);
         }

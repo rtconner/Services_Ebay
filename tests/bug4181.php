@@ -11,12 +11,12 @@
 require_once '../Ebay.php';
 require_once '../examples/config-local.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 
 $session->setDebug(Services_Ebay_Session::DEBUG_PRINT);
 
-$item = Services_Ebay::loadModel('Item', null, $session);
+$item = \Services\Ebay::loadModel('Item', null, $session);
 
 // set the item props
 $item->AmEx = 1;

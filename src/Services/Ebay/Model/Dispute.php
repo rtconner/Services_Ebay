@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a eBay dispute
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Dispute extends Services_Ebay_Model implements IteratorAggregate
+class Dispute extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * dispute messages

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get the logo URL
  *
@@ -9,7 +10,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/api_doc/Functions/GetMemberMessages/getmembermessageslogic.htm
  * @todo    perhaps this should be split into two wrapper-calls: GetMemberMessagesByItemId, GetMemberMessagesByDateRange
  */
-class Services_Ebay_Call_GetMemberMessages extends Services_Ebay_Call 
+class GetMemberMessages extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -48,10 +49,10 @@ class Services_Ebay_Call_GetMemberMessages extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        $result = Services_Ebay::loadModel('MemberMessageList', $return, $session);
+        $result = \Services\Ebay::loadModel('MemberMessageList', $return, $session);
         return $result;
     }
 }

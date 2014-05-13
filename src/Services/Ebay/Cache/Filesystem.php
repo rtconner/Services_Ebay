@@ -1,4 +1,5 @@
-<?php
+<?php namespace \Services\Ebay\Cache;
+
 /**
  * Very simple filesystem cache
  *
@@ -18,7 +19,7 @@
  *
  * @todo    add some checks before writing files
  */
-class Services_Ebay_Cache_Filesystem extends Services_Ebay_Cache 
+class Filesystem extends Services_Ebay_Cache 
 {
    /**
     * load a model from cache

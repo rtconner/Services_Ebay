@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a eBay feedback
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_FeedbackEntry extends Services_Ebay_Model
+class FeedbackEntry extends \Services\Ebay\Model
 {
    /**
     * get the item, for which the feedback was given
@@ -18,7 +19,7 @@ class Services_Ebay_Model_FeedbackEntry extends Services_Ebay_Model
         $args = array(
                         'Id' => $this->properties['ItemNumber']
                     );
-        $call = Services_Ebay::loadAPICall('GetItem');
+        $call = \Services\Ebay::loadAPICall('GetItem');
         $call->setArgs($args);
         
         return $call->call($this->session);

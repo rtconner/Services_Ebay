@@ -12,11 +12,11 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
-$shipment = Services_Ebay::loadModel('Shipment');
+$shipment = \Services\Ebay::loadModel('Shipment');
 
 $shipment->InsuredValue = 400;
 $shipment->PayPalShipmentId = '12345678';

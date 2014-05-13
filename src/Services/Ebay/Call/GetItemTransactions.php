@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get all transactions for an item
  *
@@ -9,7 +10,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetItemTransactions/GetItemTransactionsLogic.htm
  * @todo    create a model for the result set
  */
-class Services_Ebay_Call_GetItemTransactions extends Services_Ebay_Call 
+class GetItemTransactions extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -36,7 +37,7 @@ class Services_Ebay_Call_GetItemTransactions extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $bak = $this->args;
         $this->args['PaginationType'] = array();
@@ -51,7 +52,7 @@ class Services_Ebay_Call_GetItemTransactions extends Services_Ebay_Call
         }
 
         $return = parent::call($session);
-        $result = Services_Ebay::loadModel('TransactionList', $return, $session);
+        $result = \Services\Ebay::loadModel('TransactionList', $return, $session);
 
         $this->args = $bak;
         return $result;

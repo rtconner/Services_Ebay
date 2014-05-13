@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get the watch list of the current user
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetWatchList/GetWatchListLogic.htm
  */
-class Services_Ebay_Call_GetWatchList extends Services_Ebay_Call 
+class GetWatchList extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -42,10 +43,10 @@ class Services_Ebay_Call_GetWatchList extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('ItemList', $return['WatchList']['Items'], $session);
+        return \Services\Ebay::loadModel('ItemList', $return['WatchList']['Items'], $session);
     }
 }
 ?>

@@ -1,11 +1,12 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay store
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Store extends Services_Ebay_Model implements IteratorAggregate
+class Store extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * available item lists

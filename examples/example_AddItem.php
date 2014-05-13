@@ -12,11 +12,11 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
-$item = Services_Ebay::loadModel('Item', null, $session);
+$item = \Services\Ebay::loadModel('Item', null, $session);
 $item->Category = 57882;
 $item->Title = 'Supergirls\'s cape';
 $item->Description = 'Another test item';

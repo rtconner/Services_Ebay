@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a eBay feedback
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Feedback extends Services_Ebay_Model implements IteratorAggregate
+class Feedback extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * property that stores the unique identifier (=pk) of the model
@@ -31,7 +32,7 @@ class Services_Ebay_Model_Feedback extends Services_Ebay_Model implements Iterat
     {
         if (isset($feedback['FeedbackDetailArray'])) {
             foreach ($feedback['FeedbackDetailArray'] as $tmp) {
-                array_push($this->items, Services_Ebay::loadModel('FeedbackEntry', $tmp, $session));
+                array_push($this->items, \Services\Ebay::loadModel('FeedbackEntry', $tmp, $session));
             }
         	unset($feedback['FeedbackDetailArray']);
         }

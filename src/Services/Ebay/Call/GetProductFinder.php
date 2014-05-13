@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get XSL stylesheet to transform product finder
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetProductFinder/GetProductFinderLogic.htm
  */
-class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call 
+class GetProductFinder extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -51,7 +52,7 @@ class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $xml = parent::call($session, false);
         $dom = DOMDocument::loadXML($xml);
@@ -59,7 +60,7 @@ class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call
         $result = array();
         $productFinders = $dom->getElementsByTagName('ProductFinder');
         foreach ($productFinders as $node) {
-        	$result[] = Services_Ebay::loadModel('ProductFinder', $node, $session);
+        	$result[] = \Services\Ebay::loadModel('ProductFinder', $node, $session);
         }
         
         return $result;

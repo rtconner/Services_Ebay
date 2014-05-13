@@ -17,11 +17,11 @@ require_once 'config.php';
  */
 require_once '../Ebay/Model/User.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 
 // build a filesystem cache
-$userCache = Services_Ebay::loadCache('Filesystem', array('path' => './cache'));
+$userCache = \Services\Ebay::loadCache('Filesystem', array('path' => './cache'));
 
 // use a static expiry of 15 minutes
 $userCache->setExpiry('Static', 15);
@@ -30,7 +30,7 @@ $userCache->setExpiry('Static', 15);
 Services_Ebay_Model_User::setCache($userCache);
 
 // load a new user model
-$user = Services_Ebay::loadModel('User', 'superman-74', $session);
+$user = \Services\Ebay::loadModel('User', 'superman-74', $session);
 
 if ($user->isCached()) {
     echo 'data had been cached<br />';

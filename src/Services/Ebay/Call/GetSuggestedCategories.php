@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get suggested categories
  *
@@ -11,7 +12,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetSuggestedCategories/GetSuggestedCategoriesLogic.htm
  */
-class Services_Ebay_Call_GetSuggestedCategories extends Services_Ebay_Call 
+class GetSuggestedCategories extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -34,7 +35,7 @@ class Services_Ebay_Call_GetSuggestedCategories extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         return $return['SuggestedCategories'];

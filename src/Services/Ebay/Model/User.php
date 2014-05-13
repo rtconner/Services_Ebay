@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay user
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_User extends Services_Ebay_Model
+class User extends \Services\Ebay\Model
 {
    /**
     * model type
@@ -30,7 +31,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
     * @param    int     items per page
     * @link     http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetFeedback/GetFeedback.htm
     */
-    public function GetFeedback($DetailLevel = Services_Ebay::FEEDBACK_BRIEF, $StartingPage = 1, $ItemsPerPage = 25)
+    public function GetFeedback($DetailLevel = \Services\Ebay::FEEDBACK_BRIEF, $StartingPage = 1, $ItemsPerPage = 25)
     {
         $args = array(
                        'UserID'       => $this->properties['UserID'],
@@ -40,7 +41,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
                                               ),
                        'DetailLevel'  => 'ReturnAll'
                     );
-        $call = Services_Ebay::loadAPICall('GetFeedback');
+        $call = \Services\Ebay::loadAPICall('GetFeedback');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -59,7 +60,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
                        'DetailLevel'  => 16
                     );
         $args = array_merge($defaultArgs, $args);
-        $call = Services_Ebay::loadAPICall('GetSellerList');
+        $call = \Services\Ebay::loadAPICall('GetSellerList');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -79,7 +80,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
                        'EndTimeFrom'        => $EndTimeFrom,
                        'EndTimeTo'          => $EndTimeTo
                     );
-        $call = Services_Ebay::loadAPICall('GetBidderList');
+        $call = \Services\Ebay::loadAPICall('GetBidderList');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -102,7 +103,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
         if (!is_null($TransactionId)) {
             $args['TransactionId'] = $TransactionId;
         }
-        $call = Services_Ebay::loadAPICall('LeaveFeedback');
+        $call = \Services\Ebay::loadAPICall('LeaveFeedback');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -114,7 +115,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
     * Use this to query by a previously set user id
     *
     * <code>
-    * $user = Services_Ebay::loadModel('User', 'superman-74', $session);
+    * $user = \Services\Ebay::loadModel('User', 'superman-74', $session);
     * $user->Get();
     * </code>
     *
@@ -128,7 +129,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
                         'ItemId' => $ItemId
                     );
 
-        $call = Services_Ebay::loadAPICall('GetUser');
+        $call = \Services\Ebay::loadAPICall('GetUser');
         $call->setArgs($args);
         
         $tmp = $call->call($this->session);
@@ -138,4 +139,3 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
         return true;
     }
 }
-?>

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a product finder
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_ProductFinder extends Services_Ebay_Model
+class ProductFinder extends \Services\Ebay\Model
 {
    /**
     * stores the DOM document

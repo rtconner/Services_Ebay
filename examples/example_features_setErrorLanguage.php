@@ -15,14 +15,14 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
 // get errors in German
-$session->setErrorLanguage(Services_Ebay::SITEID_DE);
+$session->setErrorLanguage(\Services\Ebay::SITEID_DE);
 
 try {
     $logo = $ebay->GetLogoURL('Foo');

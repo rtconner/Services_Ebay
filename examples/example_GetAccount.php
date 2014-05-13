@@ -12,13 +12,13 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$account = $ebay->GetAccount(Services_Ebay::ACCOUNT_TYPE_PERIOD, '2006-02-01', '2006-02-02');
+$account = $ebay->GetAccount(\Services\Ebay::ACCOUNT_TYPE_PERIOD, '2006-02-01', '2006-02-02');
 
 echo '<pre>';
 print_r($account->toArray());

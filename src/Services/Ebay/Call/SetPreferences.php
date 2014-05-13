@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Set eBay preferences
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/SetPreferences/SetPreferencesLogic.htm
  */
-class Services_Ebay_Call_SetPreferences extends Services_Ebay_Call 
+class SetPreferences extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -41,8 +42,8 @@ class Services_Ebay_Call_SetPreferences extends Services_Ebay_Call
     {
         $prefs = $args[0];
         
-        if (!$prefs instanceof Services_Ebay_Model_Preferences ) {
-            throw new Services_Ebay_Exception( 'No preferences passed.' );
+        if (!$prefs instanceof \Services\Ebay\Model\Preferences ) {
+            throw new \Services\Ebay\Exception( 'No preferences passed.' );
         }
         $this->args = $prefs->toArray();
     }
@@ -53,7 +54,7 @@ class Services_Ebay_Call_SetPreferences extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         if ($return['CallStatus']['Status'] === 'Success') {

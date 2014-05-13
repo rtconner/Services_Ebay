@@ -23,7 +23,7 @@ require_once '../Ebay/Model/Item.php';
  * You may implement any additional methods you need
  * in your custom models.
  */
-class myItem extends Services_Ebay_Model_Item
+class myItem extends \Services\Ebay\Model\Item
 {
    /**
     * Dummy method
@@ -38,12 +38,12 @@ class myItem extends Services_Ebay_Model_Item
     }
 }
 
-Services_Ebay::useModelClass('Item', 'myItem');
+\Services\Ebay::useModelClass('Item', 'myItem');
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 
-$item = Services_Ebay::loadModel('Item', '4501296414', $session);
+$item = \Services\Ebay::loadModel('Item', '4501296414', $session);
 
 $item->Get();
 $item->StoreItem();

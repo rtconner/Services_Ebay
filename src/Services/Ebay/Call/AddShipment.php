@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Add a shipment
  *
@@ -7,7 +8,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Call_AddShipment extends Services_Ebay_Call 
+class AddShipment extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -41,7 +42,7 @@ class Services_Ebay_Call_AddShipment extends Services_Ebay_Call
         $item = $args[0];
         
         if (!$item instanceof Services_Ebay_Model_Shipment ) {
-            throw new Services_Ebay_Exception( 'No shipment passed.' );
+            throw new \Services\Ebay\Exception( 'No shipment passed.' );
         }
         $this->item = $item;
         $this->args['Shipment'] = $item->toArray();
@@ -53,7 +54,7 @@ class Services_Ebay_Call_AddShipment extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         echo '<pre>';

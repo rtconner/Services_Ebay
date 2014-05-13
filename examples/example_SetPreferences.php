@@ -12,19 +12,19 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$prefs = Services_Ebay::loadModel('Preferences', 'CrossPromotion');
+$prefs = \Services\Ebay::loadModel('Preferences', 'CrossPromotion');
 $prefs->AddPreference('Enabled', 1, 'Boolean');
 
-$sorting = Services_Ebay::loadModel('Preferences', 'Sorting');
+$sorting = \Services\Ebay::loadModel('Preferences', 'Sorting');
 $prefs->AddPreference($sorting);
 
-$crosssell_sortfiltering = Services_Ebay::loadModel('Preferences', 'Crosssell_SortFiltering');
+$crosssell_sortfiltering = \Services\Ebay::loadModel('Preferences', 'Crosssell_SortFiltering');
 $crosssell_sortfiltering->AddPreference('BuyItNowSortFiltering', 1, 'Integer');
 $crosssell_sortfiltering->AddPreference('FinalSortFiltering', 1, 'Integer');
 $sorting->AddPreference($crosssell_sortfiltering);

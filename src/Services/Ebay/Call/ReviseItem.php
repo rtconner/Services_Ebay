@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Revise (change) an item that has been added to Ebay
  *
@@ -15,7 +16,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/ReviseItem/ReviseItemLogic.htm
  * @see     Services_Ebay_Model_Item::Revise()
  */
-class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call 
+class ReviseItem extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -49,18 +50,18 @@ class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call
         $item = $args[0];
         
         if (!$item instanceof Services_Ebay_Model_Item) {
-            throw new Services_Ebay_Exception( 'No item passed.' );
+            throw new \Services\Ebay\Exception( 'No item passed.' );
         }
         
         $id = $item->Id;
         
         if (empty($id)) {
-            throw new Services_Ebay_Exception( 'Item has no ID.' );
+            throw new \Services\Ebay\Exception( 'Item has no ID.' );
         }
 
         $this->args = $item->GetModifiedProperties();
         if (isset($this->args['Id'])) {
-            throw new Services_Ebay_Exception( 'You must not change the item ID.' );
+            throw new \Services\Ebay\Exception( 'You must not change the item ID.' );
         }
         
         $this->args['ItemID'] = $id;
@@ -72,7 +73,7 @@ class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         if (isset($return['Item'])) {

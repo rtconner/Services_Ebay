@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get all items a user has been/is bidding on
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @todo    build item list model
  */
-class Services_Ebay_Call_GetBidderList extends Services_Ebay_Call 
+class GetBidderList extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -46,10 +47,10 @@ class Services_Ebay_Call_GetBidderList extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('ItemList', $return['BidItemArray'], $session);
+        return \Services\Ebay::loadModel('ItemList', $return['BidItemArray'], $session);
     }
 }
 ?>

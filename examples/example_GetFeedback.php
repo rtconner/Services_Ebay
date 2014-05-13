@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
@@ -32,7 +32,7 @@ echo	"</pre>";
  * get the detailed feedback
  */
 echo 'Get verbose feedback<br />';
-$feedback = $ebay->GetFeedback('loislane-74', Services_Ebay::FEEDBACK_VERBOSE);
+$feedback = $ebay->GetFeedback('loislane-74', \Services\Ebay::FEEDBACK_VERBOSE);
 echo	"<pre>";
 print_r($feedback->toArray());
 echo	"</pre>";

@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
@@ -35,7 +35,7 @@ foreach ($transactions as $transaction) {
 
 echo '<b>Use new detail level</b><br />';
 
-$session->setDetailLevel(Services_Ebay::TRANSACTION_DETAIL_BUYER + Services_Ebay::TRANSACTION_DETAIL_SELLER);
+$session->setDetailLevel(\Services\Ebay::TRANSACTION_DETAIL_BUYER + \Services\Ebay::TRANSACTION_DETAIL_SELLER);
 
 $transactions = $ebay->GetItemTransactions('4501333179', '2004-08-24 00:00:00', '2004-08-30 00:00:00');
 

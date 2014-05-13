@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * End an auction
  *
@@ -9,7 +10,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/EndItem/EndItemLogic.htm
  * @see     Services_Model_Item::End()
  */
-class Services_Ebay_Call_EndItem extends Services_Ebay_Call 
+class EndItem extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -35,7 +36,7 @@ class Services_Ebay_Call_EndItem extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         return $return['Message'];

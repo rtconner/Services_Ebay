@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get user preferences
  *
@@ -9,7 +10,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetPreferences/GetPreferencesLogic.htm
  * @todo    build a model for preferences
  */
-class Services_Ebay_Call_GetPreferences extends Services_Ebay_Call 
+class GetPreferences extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -48,10 +49,10 @@ class Services_Ebay_Call_GetPreferences extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('Preferences', $return['GetPreferencesResult']['Preferences'], $session);
+        return \Services\Ebay::loadModel('Preferences', $return['GetPreferencesResult']['Preferences'], $session);
     }
 }
 ?>

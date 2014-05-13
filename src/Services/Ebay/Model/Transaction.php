@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a eBay transaction
  *
@@ -8,7 +9,7 @@
  *
  * @todo    build buyer object
  */
-class Services_Ebay_Model_Transaction extends Services_Ebay_Model
+class Transaction extends \Services\Ebay\Model
 {
 }
 ?>

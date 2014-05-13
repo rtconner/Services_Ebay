@@ -6,7 +6,7 @@ $Id$
 ----------
 Build decorators for models to dynamically add new functionality:
 
-$item = Services_Ebay::loadModel('Item');
+$item = \Services\Ebay::loadModel('Item');
 $item->Title = 'JSA issue #34';
 $item->Description = 'The one where Hawkman comes back from the dead.';
 $betterItem = $item->Decorate('GetSuggestedCategories');

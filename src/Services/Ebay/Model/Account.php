@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay account
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Account extends Services_Ebay_Model implements IteratorAggregate
+class Account extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * entries in the account

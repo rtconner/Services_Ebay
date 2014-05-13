@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get information about a store
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetStoreDetails/GetStoreDetailsLogic.htm
  */
-class Services_Ebay_Call_GetStoreDetails extends Services_Ebay_Call 
+class GetStoreDetails extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -31,10 +32,10 @@ class Services_Ebay_Call_GetStoreDetails extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('Store', $return['StoreDetails'], $session);
+        return \Services\Ebay::loadModel('Store', $return['StoreDetails'], $session);
     }
 }
 ?>

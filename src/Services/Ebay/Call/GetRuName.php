@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get the RuName
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetRuName/GetRuNameLogic.htm
  */
-class Services_Ebay_Call_GetRuName extends Services_Ebay_Call 
+class GetRuName extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -22,7 +23,7 @@ class Services_Ebay_Call_GetRuName extends Services_Ebay_Call
     *
     * @var  int
     */
-    protected $authType = Services_Ebay::AUTH_TYPE_USER;
+    protected $authType = \Services\Ebay::AUTH_TYPE_USER;
     
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -38,7 +39,7 @@ class Services_Ebay_Call_GetRuName extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         return $return['RuName'];

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace \Services\Ebay\Cache;
+
 /**
  * Static Expiry Check
  *
@@ -7,7 +8,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Cache_ExpiryCheck_Static
+class ExpiryCheckStatic
 {
    /**
     * static lifetime of the cache
@@ -41,4 +42,3 @@ class Services_Ebay_Cache_ExpiryCheck_Static
     	return false;
     }
 }
-?>

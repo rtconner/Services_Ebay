@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a search result
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_SearchResult extends Services_Ebay_Model implements IteratorAggregate
+class SearchResult extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * items that have been found
@@ -32,7 +33,7 @@ class Services_Ebay_Model_SearchResult extends Services_Ebay_Model implements It
                 $items = array($items);
             }
             foreach ($items as $tmp) {
-                array_push($this->items, Services_Ebay::loadModel('Item', $tmp['Item'], $session));
+                array_push($this->items, \Services\Ebay::loadModel('Item', $tmp['Item'], $session));
             }
         }
         parent::__construct($props, $session);

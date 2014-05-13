@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get all bidders for an item
  *
@@ -9,7 +10,7 @@
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetAllBidders/GetAllBiddersLogic.htm
  * @todo    create a model for the result set
  */
-class Services_Ebay_Call_GetAllBidders extends Services_Ebay_Call 
+class GetAllBidders extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -33,7 +34,7 @@ class Services_Ebay_Call_GetAllBidders extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         return $return['BidArray'];

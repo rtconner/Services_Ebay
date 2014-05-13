@@ -1,11 +1,12 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay order
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Order extends Services_Ebay_Model
+class Order extends \Services\Ebay\Model
 {
    /**
     * create a new order

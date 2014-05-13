@@ -7,6 +7,7 @@
  *
  * @package  Services_Ebay
  * @author   Stephan Schmidt <schst@php.net>
+ * @author   Robert Conner <rtconner@gmail.com>
  */
 
 /**
@@ -257,7 +258,7 @@ class Ebay {
     *
     * @param    object Services_Ebay_Session
     */
-    public function __construct(Services\Ebay\Session $session)
+    public function __construct(\Services\Ebay\Session $session)
     {
         $this->session = $session;
     }
@@ -276,7 +277,7 @@ class Ebay {
     */
     public static function getSession($devId, $appId, $certId, $encoding = 'ISO-8859-1')
     {
-        $session = new Services/Ebay/Session($devId, $appId, $certId, $encoding);
+        $session = new \Services\Ebay\Session($devId, $appId, $certId, $encoding);
 
         return $session;
     }
@@ -329,15 +330,9 @@ class Ebay {
     {
         $method = ucfirst($method);
 
-        $classname = 'Services_Ebay_Call_'.$method;
-        $filename  = SERVICES_EBAY_BASEDIR . '/Ebay/Call/'.$method.'.php';
-        if (file_exists($filename)) {
-            include_once $filename;
-        }
-        if (!class_exists($classname)) {
-            throw new Services_Ebay_API_Exception('API-Call \''.$method.'\' could not be found, please check the spelling, remember that method calls are case-sensitive.');
-        }
+        $classname = '\Services\Ebay\Call\''.$method;
         $call = new $classname($args);
+
         return $call;
     }
 
@@ -353,12 +348,9 @@ class Ebay {
         	$classname = self::$modelClasses[$type];
         } else {
             // use the default model class
-            $classname = 'Services_Ebay_Model_'.$type;
-            include_once SERVICES_EBAY_BASEDIR . '/Ebay/Model/'.$type.'.php';
+            $classname = '\Services\Ebay\Model\''.$type;
         }
-        if (!class_exists($classname)) {
-            throw new Services_Ebay_Exception('Model \''.$type.'\' could not be found, please check the spelling');   
-        }
+
         $model = new $classname($properties, $session);
         
         return $model;
@@ -372,12 +364,7 @@ class Ebay {
     */
     public static function loadCache($type, $options)
     {
-        $classname = 'Services_Ebay_Cache_'.$type;
-        include_once SERVICES_EBAY_BASEDIR . '/Ebay/Cache/'.$type.'.php';
-
-        if (!class_exists($classname)) {
-            throw new Services_Ebay_Exception('Class \''.$type.'\' could not be found, please check the spelling');   
-        }
+        $classname = '\Services\Ebay\Cache\''.$type;
         $cache = new $classname($options);
         
         return $cache;
@@ -405,4 +392,3 @@ class Ebay {
         return $calls;
     }
 }
-?>

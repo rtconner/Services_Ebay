@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Leave feedback for a user
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/LeaveFeedback/LeaveFeedbackLogic.htm
  */
-class Services_Ebay_Call_LeaveFeedback extends Services_Ebay_Call 
+class LeaveFeedback extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -36,7 +37,7 @@ class Services_Ebay_Call_LeaveFeedback extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string  feedback ID
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         if ($return['LeaveFeedback']['Status'] === 'Success') {

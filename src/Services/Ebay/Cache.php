@@ -70,14 +70,7 @@ abstract class Cache {
     */
     public function setExpiry($type, $params)
     {
-        $className = 'Services_Ebay_Cache_ExpiryCheck_' . $type;
-        $fileName  = SERVICES_EBAY_BASEDIR . '/Ebay/Cache/ExpiryCheck/' . $type . '.php';
-        @include_once $fileName;
-        
-        if (!class_exists($className)) {
-        	throw new Services_Ebay_Exception('Unknown expiry check \''.$type.'\'.');
-        }
-        
+        $className = '\Services\Ebay\Cache\ExpiryCheck'.$type;
         $this->expiry = new $className($params);
         return true;
     }

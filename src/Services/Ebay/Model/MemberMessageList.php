@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a list of member messages
  *
@@ -7,7 +8,7 @@
  * @package Services_Ebay
  * @author  Carsten Lucke <luckec@php.net>
  */
-class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implements IteratorAggregate
+class MemberMessageList extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * member messages
@@ -52,7 +53,7 @@ class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implemen
                 $messages['MemberMessage'] = array($messages['MemberMessage']);
             }
             foreach ($messages['MemberMessage'] as $tmp) {
-                array_push($this->messages, Services_Ebay::loadModel('MemberMessage', $tmp, $session));
+                array_push($this->messages, \Services\Ebay::loadModel('MemberMessage', $tmp, $session));
             }
             unset($messages['MemberMessage']);
         }

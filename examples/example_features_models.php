@@ -12,7 +12,7 @@
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
@@ -38,7 +38,7 @@ echo '</pre>';
 /**
  * get feedback summary
  */
-$summary = $user->getFeedback( Services_Ebay::FEEDBACK_BRIEF );
+$summary = $user->getFeedback( \Services\Ebay::FEEDBACK_BRIEF );
 echo "This user's score is ".$summary->Score."<br />";
 
 echo '<pre>';
@@ -48,7 +48,7 @@ echo '</pre>';
 /**
  * get verbose feedback
  */
-$verbose = $user->getFeedback( Services_Ebay::FEEDBACK_VERBOSE, 1, 10 );
+$verbose = $user->getFeedback( \Services\Ebay::FEEDBACK_VERBOSE, 1, 10 );
 foreach ($verbose as $feedback) {
     echo 'Feedback for '.$feedback->ItemNumber.'<br />';
 	echo $feedback;

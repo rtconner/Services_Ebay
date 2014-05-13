@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a shipment
  *
@@ -6,7 +7,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Shipment extends Services_Ebay_Model
+class Shipment extends \Services\Ebay\Model
 {
    /**
     * default properties for a shipment

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Get cross promotions for an items
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetCrossPromotions/GetCrossPromotions.htm
  */
-class Services_Ebay_Call_GetCrossPromotions extends Services_Ebay_Call 
+class GetCrossPromotions extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -41,7 +42,7 @@ class Services_Ebay_Call_GetCrossPromotions extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
         return $return['CrossPromotion'];

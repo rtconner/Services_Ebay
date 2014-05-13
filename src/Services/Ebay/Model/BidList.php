@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a list of bids
  *
@@ -7,7 +8,7 @@
  * @package Services_Ebay
  * @author  Carsten Lucke <luckec@php.net>
  */
-class Services_Ebay_Model_BidList extends Services_Ebay_Model implements IteratorAggregate
+class BidList extends \Services\Ebay\Model implements IteratorAggregate
 {
    /**
     * bids
@@ -37,7 +38,7 @@ class Services_Ebay_Model_BidList extends Services_Ebay_Model implements Iterato
                 $bids['Bids']['Bid'] = array($bids['Bids']['Bid']);
             }
             foreach ($bids['Bids']['Bid'] as $tmp) {
-                array_push($this->bids, Services_Ebay::loadModel('Bid', $tmp, $session));
+                array_push($this->bids, \Services\Ebay::loadModel('Bid', $tmp, $session));
             }
         	unset($bids['Bids']);
         }

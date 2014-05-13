@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay item
  *
@@ -7,7 +8,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Item extends Services_Ebay_Model
+class Item extends \Services\Ebay\Model
 {
    /**
     * model type
@@ -31,7 +32,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function __construct($props, $session = null)
     {
         if (is_array($props) && isset($props['Seller'])) {
-            $props['Seller'] = Services_Ebay::loadModel('User', $props['Seller'], $session);
+            $props['Seller'] = \Services\Ebay::loadModel('User', $props['Seller'], $session);
         }
         parent::__construct($props, $session);
     }
@@ -129,7 +130,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * Use this to query by a previously set itemId.
     *
     * <code>
-    * $item = Services_Ebay::loadModel('Item', null, $session);
+    * $item = \Services\Ebay::loadModel('Item', null, $session);
     * $item->Id = 4501296414;
     * $item->Get();
     * </code>
@@ -148,7 +149,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
             $args['DetailLevel'] = $DetailLevel;
         }
 
-        $call = Services_Ebay::loadAPICall('GetItem');
+        $call = \Services\Ebay::loadAPICall('GetItem');
         $call->setArgs($args);
         
         $tmp = $call->call($this->session);
@@ -175,7 +176,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
             $args['PromotionViewMode'] = $PromotionViewMode;
         }
 
-        $call = Services_Ebay::loadAPICall('GetCrossPromotions');
+        $call = \Services\Ebay::loadAPICall('GetCrossPromotions');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -194,7 +195,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
                         'ItemID'          => $this->properties['ItemID'],
                         'Description'     => $Description
                     );
-        $call = Services_Ebay::loadAPICall('AddToItemDescription');
+        $call = \Services\Ebay::loadAPICall('AddToItemDescription');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -213,7 +214,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
                         'ItemID'  => $this->properties['ItemID'],
                         'EndCode' => $EndCode
                     );
-        $call = Services_Ebay::loadAPICall('EndItem');
+        $call = \Services\Ebay::loadAPICall('EndItem');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -229,9 +230,9 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function Add()
     {
         if (isset($this->properties['ItemID']) && !is_null($this->properties['ItemID'])) {
-        	throw new Services_Ebay_Exception('This item already has an ItemId and thus cannot be added.');
+        	throw new \Services\Ebay\Exception('This item already has an ItemId and thus cannot be added.');
         }
-        $call = Services_Ebay::loadAPICall('AddItem', array($this));
+        $call = \Services\Ebay::loadAPICall('AddItem', array($this));
         
         return $call->call($this->session);
     }
@@ -249,7 +250,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
         $args = array(
                         'ItemID'  => $this->properties['ItemID']
                     );
-        $call = Services_Ebay::loadAPICall('RelistItem');
+        $call = \Services\Ebay::loadAPICall('RelistItem');
         $call->setArgs($args);
         
         return $call->call($this->session);
@@ -263,7 +264,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     */
     public function Revise()
     {
-        $call = Services_Ebay::loadAPICall('ReviseItem', array($this));
+        $call = \Services\Ebay::loadAPICall('ReviseItem', array($this));
         return $call->call($this->session);
     }
 
@@ -285,7 +286,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
         if ($BuyItNowPrice !== null) {
         	$args['BuyItNowPrice'] = $BuyItNowPrice;
         }
-        $call = Services_Ebay::loadAPICall('AddSecondChanceItem');
+        $call = \Services\Ebay::loadAPICall('AddSecondChanceItem');
         $call->setArgs($args);
         
         return $call->call($this->session);

@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Fetch an eBay item
  *
@@ -8,7 +9,7 @@
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetItem/GetItemLogic.htm
  */
-class Services_Ebay_Call_GetItem extends Services_Ebay_Call 
+class GetItem extends \Services\Ebay\Call 
 {
    /**
     * verb of the API call
@@ -31,10 +32,10 @@ class Services_Ebay_Call_GetItem extends Services_Ebay_Call
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = parent::call($session);
-        $item   = Services_Ebay::loadModel('Item', $return['Item'], $session);
+        $item   = \Services\Ebay::loadModel('Item', $return['Item'], $session);
 
         return $item;
     }

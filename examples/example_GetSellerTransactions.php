@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
@@ -35,7 +35,7 @@ if ($transactions) {
     }
 }
 
-$session->setDetailLevel(Services_Ebay::RESPONSE_VERBOSE);
+$session->setDetailLevel(\Services\Ebay::RESPONSE_VERBOSE);
 
 $transactions = $ebay->GetSellerTransactions('2004-08-24 00:00:00', '2004-08-30 00:00:00');
 if ($transactions) {

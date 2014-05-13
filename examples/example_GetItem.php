@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once 'config.php';
 
-$session = Services_Ebay::getSession($devId, $appId, $certId);
+$session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
@@ -24,7 +24,7 @@ echo '<pre>';
 print_r($item->toArray());
 echo '</pre>';
 
-$item_2 = Services_Ebay::loadModel('Item', null, $session);
+$item_2 = \Services\Ebay::loadModel('Item', null, $session);
 $item_2->Id = 110002463987;
 $res2 = $item_2->Get();
 ?>

@@ -32,7 +32,7 @@ abstract class Call {
     *
     * @var  int
     */
-    protected $authType = Services_Ebay::AUTH_TYPE_TOKEN;
+    protected $authType = \Services\Ebay::AUTH_TYPE_TOKEN;
 
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -93,7 +93,7 @@ abstract class Call {
 
         $cnt = count($args);
         if ($cnt > count($this->paramMap)) {
-            throw new Services_Ebay_Exception('To many parameters have been passed');
+            throw new \Services\Ebay\Exception('To many parameters have been passed');
         }
 
         for ($i = 0; $i < $cnt; $i++) {
@@ -108,7 +108,7 @@ abstract class Call {
     * @param  boolean  flag to indicate, whether the result should be parsed using XML_Serializer
     * @return array
     */
-    public function call(Services_Ebay_Session $session, $parseResult = true)
+    public function call(\Services\Ebay\Session $session, $parseResult = true)
     {
         $session->setSerializerOptions($this->serializerOptions);
         $session->setUnserializerOptions($this->unserializerOptions);

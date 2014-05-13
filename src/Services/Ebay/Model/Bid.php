@@ -1,11 +1,12 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for a single bid
  *
  * @package Services_Ebay
  * @author  Carsten Lucke <luckec@php.net>
  */
-class Services_Ebay_Model_Bid extends Services_Ebay_Model
+class Bid extends \Services\Ebay\Model
 {
     /**
      * The bidder.
@@ -18,13 +19,13 @@ class Services_Ebay_Model_Bid extends Services_Ebay_Model
      * Constructor
      *
      * @param array     $props  properties
-     * @param Services_Ebay_Session $session    session
+     * @param \Services\Ebay\Session $session    session
      * @param integer   $DetailLevel    detail-level
      */
     public function __construct($props, $session = null, $DetailLevel = 0) {
         parent::__construct($props, $session, $DetailLevel);
         
-        $this->user = Services_Ebay::loadModel('User', $props['User'], $session);
+        $this->user = \Services\Ebay::loadModel('User', $props['User'], $session);
         unset($this->properties['User']);
     }
     

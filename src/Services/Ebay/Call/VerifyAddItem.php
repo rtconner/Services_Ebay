@@ -1,4 +1,5 @@
-<?PHP
+<?php namespace Services\Ebay\Call;
+
 /**
  * Verify an item before adding it
  *
@@ -24,7 +25,7 @@ require_once SERVICES_EBAY_BASEDIR.'/Ebay/Call/AddItem.php';
  * @author  Stephan Schmidt <schst@php.net>
  * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/VerifyAddItem/VerifyAddItemLogic.htm
  */
-class Services_Ebay_Call_VerifyAddItem extends Services_Ebay_Call_AddItem
+class VerifyAddItem extends \Services\Ebay\Call\AddItem
 {
    /**
     * verb of the API call
@@ -39,7 +40,7 @@ class Services_Ebay_Call_VerifyAddItem extends Services_Ebay_Call_AddItem
     * @param    object Services_Ebay_Session
     * @return   string
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(\Services\Ebay\Session $session)
     {
         $return = Services_Ebay_Call::call($session);
         if (isset($return['Item'])) {

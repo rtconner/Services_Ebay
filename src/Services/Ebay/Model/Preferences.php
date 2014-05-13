@@ -1,11 +1,12 @@
-<?PHP
+<?php namespace Services\Ebay\Model;
+
 /**
  * Model for an eBay preference
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model_Preferences extends Services_Ebay_Model
+class Preferences extends \Services\Ebay\Model
 {
     /**
      * preferences
@@ -51,7 +52,7 @@ class Services_Ebay_Model_Preferences extends Services_Ebay_Model
                     $tmp = array($props['Preferences']);
                 }
                 foreach ($tmp as $set) {
-                	$this->AddPreference(Services_Ebay::loadModel('Preferences', $set, $session));
+                	$this->AddPreference(\Services\Ebay::loadModel('Preferences', $set, $session));
                 }
             }
         }
