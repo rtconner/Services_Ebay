@@ -10,7 +10,8 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
@@ -27,4 +28,3 @@ $item->Get();
 echo	"<pre>";
 print_r($item->toArray());
 echo	"</pre>";
-?>

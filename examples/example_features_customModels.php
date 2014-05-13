@@ -9,13 +9,9 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
-require_once 'config.php';
 
-/**
- * load the default item model as we want to extend it.
- */
-require_once '../Ebay/Model/Item.php';
+require_once '../vendor/autoload.php';
+require_once 'config.php';
 
 /**
  * simple model class

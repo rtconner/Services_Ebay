@@ -9,14 +9,14 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setAuthenticationData($username, $password);
 
-$ebay = new Services_Ebay($session);
+$ebay = new \Services\Ebay($session);
 echo 'Getting RuName...';
 $RuName = $ebay->GetRuName('MyUseCase');
 echo $RuName.'<br />';
@@ -28,4 +28,3 @@ $result = $ebay->GetReturnURL();
 echo '<pre>';
 print_r($result);
 echo '</pre>';
-?>

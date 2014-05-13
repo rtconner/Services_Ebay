@@ -3,7 +3,7 @@
 use Mockery as m;
 use \PHPUnit_Framework_TestCase;
 
-class PaypalTest extends PHPUnit_Framework_TestCase {
+class SimpleTest extends PHPUnit_Framework_TestCase {
 	
 	public function setUp() {
 	}

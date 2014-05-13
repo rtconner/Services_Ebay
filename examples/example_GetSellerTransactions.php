@@ -9,14 +9,14 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
-$ebay = new Services_Ebay($session);
+$ebay = new \Services\Ebay($session);
 
 $transactions = $ebay->GetSellerTransactions('2004-08-24 00:00:00', '2004-08-30 00:00:00');
 

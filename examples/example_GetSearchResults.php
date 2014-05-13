@@ -9,14 +9,14 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
-$ebay = new Services_Ebay($session);
+$ebay = new \Services\Ebay($session);
 
 $result = $ebay->GetSearchResults('NoteBook');
 
@@ -30,4 +30,3 @@ foreach ($result as $item) {
 	echo $item;
 	echo '<br />';
 }
-?>

@@ -10,14 +10,14 @@
  */
 error_reporting(E_ALL);
  
-require_once '../Ebay.php';
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
-$ebay = new Services_Ebay($session);
+$ebay = new \Services\Ebay($session);
 
 /**
  * get the summary
@@ -48,4 +48,3 @@ if ($entry = $feedback->getEntry(0)) {
     print_r($entry->toArray());
     echo	"</pre>";
 }
-?>

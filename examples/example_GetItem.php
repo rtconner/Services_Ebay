@@ -9,14 +9,14 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 
 $session->setToken($token);
 
-$ebay = new Services_Ebay($session);
+$ebay = new \Services\Ebay($session);
 
 $item = $ebay->GetItem(110002463992);
 echo 'User-Id of the seller: '.$item->Seller->UserID.'<br />';
@@ -27,4 +27,3 @@ echo '</pre>';
 $item_2 = \Services\Ebay::loadModel('Item', null, $session);
 $item_2->Id = 110002463987;
 $res2 = $item_2->Get();
-?>

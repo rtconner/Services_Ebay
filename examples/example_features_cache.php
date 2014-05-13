@@ -9,13 +9,9 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
-require_once 'config.php';
 
-/**
- * load the user model as we want to set a static cache
- */
-require_once '../Ebay/Model/User.php';
+require_once '../vendor/autoload.php';
+require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
@@ -45,4 +41,3 @@ if ($user->isCached()) {
     print_r($user->toArray());
     echo '</pre>';
 }
-?>

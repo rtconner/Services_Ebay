@@ -10,7 +10,8 @@
  * @author      Stephan Schmidt
  */
 error_reporting(E_ALL);
-require_once '../Ebay.php';
+
+require_once '../vendor/autoload.php';
 require_once 'config.php';
 
 $session = \Services\Ebay::getSession($devId, $appId, $certId);
@@ -20,4 +21,3 @@ $call = \Services\Ebay::loadAPICall('AddDispute');
 echo '<pre>';
 $call->describeCall();
 echo '</pre>';
-?>
