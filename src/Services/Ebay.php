@@ -332,7 +332,7 @@ class Ebay {
     {
         $method = ucfirst($method);
 
-        $classname = '\Services\Ebay\Call\''.$method;
+        $classname = '\Services\Ebay\Call\\'.$method;
         $call = new $classname($args);
 
         return $call;
@@ -350,7 +350,7 @@ class Ebay {
         	$classname = self::$modelClasses[$type];
         } else {
             // use the default model class
-            $classname = '\Services\Ebay\Model\''.$type;
+            $classname = '\Services\Ebay\Model\\'.$type;
         }
 
         $model = new $classname($properties, $session);
@@ -366,7 +366,7 @@ class Ebay {
     */
     public static function loadCache($type, $options)
     {
-        $classname = '\Services\Ebay\Cache\''.$type;
+        $classname = '\Services\Ebay\Cache\\'.$type;
         $cache = new $classname($options);
         
         return $cache;

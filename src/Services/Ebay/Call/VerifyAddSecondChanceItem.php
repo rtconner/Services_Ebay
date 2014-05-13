@@ -34,7 +34,7 @@ class VerifyAddSecondChanceItem extends \Services\Ebay\Call\AddSecondChanceItem
     * @param    object \Services\Ebay\Session
     * @return   array
     */
-    public function call(\Services\Ebay\Session $session)
+    public function call(\Services\Ebay\Session $session, $parseResult = true)
     {
         $return = \Services\Ebay\Call::call($session);
         if (isset($return['Item'])) {

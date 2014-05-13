@@ -6,9 +6,9 @@
     "require": {
 		"php": ">=5.3.0",
 		"ext-curl": "*",
-		"pear/pear-core": "dev-master",
+		"pear/pear_exception": "dev-master",
 		"pear/http_request2": "dev-trunk",
-		"symfony/serializer": "2.5.*@dev"
+		"sabre/xml": "0.0.5"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

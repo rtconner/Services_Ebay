@@ -1,5 +1,7 @@
 <?php namespace Services\Ebay;
 
+use Sabre\XML;
+
 /**
  * Services/Ebay/Session.php
  *
@@ -120,17 +122,10 @@ class Session
    /**
     * XML_Serializer object
     *
-    * @var object XML_Serializer
+    * @var object JMS\Serializer
     */
-    private $ser;
+    private $serializer;
 
-   /**
-    * XML_Unserializer object
-    *
-    * @var object XML_Unserializer
-    */
-    private $us;
-    
    /**
     * debug flag
     *
@@ -207,7 +202,7 @@ class Session
     * @param    string  external encoding, as eBay uses UTF-8, the session will encode and decode to
     *                   the specified encoding. Possible values are ISO-8859-1 and UTF-8
     */
-    public function __construct($devId, $appId, $certId, $encoding = 'ISO-8859-1')
+    public function __construct($devId, $appId, $certId, $encoding = 'UTF-8')
     {
         $this->devId = $devId;
         $this->appId = $appId;
@@ -222,6 +217,8 @@ class Session
                                 'encoding'           => 'UTF-8',
                                 'scalarAsAttributes' => false
                            );
+
+        /*
         // UTF-8 encode the document, if the user does not already
         // use UTF-8 encoding
         if ($encoding !== 'UTF-8') {
@@ -234,6 +231,10 @@ class Session
                     'targetEncoding' => $encoding,
                     );
         $this->us  = new XML_Unserializer($opts);
+        */
+        
+//         $this->serializer = $builder->build();
+        
     }
  
    /**
@@ -341,10 +342,12 @@ class Session
     */
     public function buildRequestBody( $verb, $params = array(), $authType = \Services\Ebay::AUTH_TYPE_TOKEN )
     {
-        $this->opts['rootName'] = $verb.'Request';
-        $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
-        $this->ser = new XML_Serializer($this->opts);
+//         $this->opts['rootName'] = $verb.'Request';
+//         $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
+//         $this->ser = new XML_Serializer($this->opts);
 
+//     	$this->serializer->setDefaultRootName($verb.'Request', 'urn:ebay:apis:eBLBaseComponents');
+    	
         $request = array(
                             'ErrorLanguage'     => $this->errorLanguage,
                             'Version'           => $this->compatLevel,
@@ -378,9 +381,19 @@ class Session
 
         $request = array_merge($request, $params);
 
-        $this->ser->serialize($request, $this->serializerOptions);
+        // I don't love this XML building, but it's the best i could figure out
+		$writer = new XML\Writer;
+		$writer->openMemory();
+		$writer->startDocument('1.0', 'UTF-8');
+		
+		$writer->startElement($verb.'Request');
+		$writer->writeAttribute('xmlns', 'urn:ebay:apis:eBLBaseComponents');
+		$writer->write($request);
+		$writer->endElement();
+		
+		$writer->endDocument();
+		return $writer->outputMemory(true);
 
-        return $this->ser->getSerializedData();
     }
 
    /**
@@ -424,7 +437,7 @@ class Session
                             'Content-Length'                 => strlen( $body )                                                     // Recommended. Specifies the size of the data (i.e., the length of the XML string) you are sending. This is used by eBay to determine how much data to read from the stream.
                         );
 
-        $class = '\Services\Ebay\Transport\''.$this->transportDriver;
+        $class = '\Services\Ebay\Transport\\'.$this->transportDriver;
         $tp = new $class();
         
         if ($this->debug > 0) {
@@ -434,10 +447,6 @@ class Session
 
         $response = $tp->sendRequest($this->url, $body, $headers);
 
-        if (PEAR::isError($response)) {
-            return $response;
-        }
-        
         if ($this->debug > 0) {
             $this->wire .= "Received response:\n";
             $this->wire .= $response."\n\n";
@@ -451,9 +460,10 @@ class Session
             return $response;
         }
 
-        $this->us->unserialize( $response, false, $this->unserializerOptions );
-        $result = $this->us->getUnserializedData();
-
+        // I don't love this XML reading, but it's the best i could figure out
+        $xml = simplexml_load_string($response);
+        $result = (array) $xml;
+        
         $errors = array();
         
         if (isset($result['Ack']) && $result['Ack'] == 'Failure') {

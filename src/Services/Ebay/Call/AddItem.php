@@ -101,7 +101,7 @@ class AddItem extends \Services\Ebay\Call
     * @param    object \Services\Ebay\Session
     * @return   string
     */
-    public function call(\Services\Ebay\Session $session)
+    public function call(\Services\Ebay\Session $session, $parseResult = true)
     {
         $return = parent::call($session);
 
