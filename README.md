@@ -15,6 +15,14 @@ http://pear.php.net/package/Services_Ebay/docs
  
 #### Installation
 
-    composer require rtconner/services_ebay
+    composer require rtconner/services_ebay dev-master
     
 To get the tests/example code to work you need to create examples/config-local.php
+
+#### Wishlist
+
+If anyone out there can help code a few things ..
+
+ - Standardize or improve the XML handling (or use a better library than sabre/xml)
+ - Refactor code to remove dependency on pear/http_request2
+ - Refactor code to remove dependency on pear/pear_exception
