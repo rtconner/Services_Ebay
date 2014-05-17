@@ -14,7 +14,7 @@
  * @todo    different caches for different detail levels
  * @todo    add the possibility to disable the cache for single models
  */
-class Model implements ArrayAccess
+class Model implements \ArrayAccess
 {
    /**
     * model type
