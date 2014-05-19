@@ -59,4 +59,3 @@ class GetItemShipping extends \Services\Ebay\Call
         return $return['ShippingDetails'];
     }
 }
-?>

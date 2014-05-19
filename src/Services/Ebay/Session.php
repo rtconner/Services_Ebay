@@ -1,6 +1,6 @@
 <?php namespace Services\Ebay;
 
-use Sabre\XML;
+use Services\XML\Unserializer;
 
 /**
  * Services/Ebay/Session.php
@@ -125,6 +125,13 @@ class Session
     * @var object JMS\Serializer
     */
     private $serializer;
+    
+   /**
+    * Unserializer object
+    *
+    * @var object JMS\Serializer
+    */
+    private $unserializer;
 
    /**
     * debug flag
@@ -218,7 +225,6 @@ class Session
                                 'scalarAsAttributes' => false
                            );
 
-        /*
         // UTF-8 encode the document, if the user does not already
         // use UTF-8 encoding
         if ($encoding !== 'UTF-8') {
@@ -230,10 +236,7 @@ class Session
                     'encoding'       => 'UTF-8',
                     'targetEncoding' => $encoding,
                     );
-        $this->us  = new XML_Unserializer($opts);
-        */
-        
-//         $this->serializer = $builder->build();
+        $this->unserializer = new Unserializer($opts);
         
     }
  
@@ -342,11 +345,9 @@ class Session
     */
     public function buildRequestBody( $verb, $params = array(), $authType = \Services\Ebay::AUTH_TYPE_TOKEN )
     {
-//         $this->opts['rootName'] = $verb.'Request';
-//         $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
-//         $this->ser = new XML_Serializer($this->opts);
-
-//     	$this->serializer->setDefaultRootName($verb.'Request', 'urn:ebay:apis:eBLBaseComponents');
+        $this->opts['rootName'] = $verb.'Request';
+        $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
+        $this->serializer = new \Services\XML\Serializer($this->opts);
     	
         $request = array(
                             'ErrorLanguage'     => $this->errorLanguage,
@@ -381,18 +382,22 @@ class Session
 
         $request = array_merge($request, $params);
 
+        $this->serializer->serialize($request, $this->serializerOptions);
+
+        return $this->serializer->getSerializedData();
+        
         // I don't love this XML building, but it's the best i could figure out
-		$writer = new XML\Writer;
-		$writer->openMemory();
-		$writer->startDocument('1.0', 'UTF-8');
+// 		$writer = new XML\Writer;
+// 		$writer->openMemory();
+// 		$writer->startDocument('1.0', 'UTF-8');
 		
-		$writer->startElement($verb.'Request');
-		$writer->writeAttribute('xmlns', 'urn:ebay:apis:eBLBaseComponents');
-		$writer->write($request);
-		$writer->endElement();
+// 		$writer->startElement($verb.'Request');
+// 		$writer->writeAttribute('xmlns', 'urn:ebay:apis:eBLBaseComponents');
+// 		$writer->write($request);
+// 		$writer->endElement();
 		
-		$writer->endDocument();
-		return $writer->outputMemory(true);
+// 		$writer->endDocument();
+// 		return $writer->outputMemory(true);
 
     }
 
@@ -459,10 +464,9 @@ class Session
         if ($parseResult === false) {
             return $response;
         }
-
-        // I don't love this XML reading, but it's the best i could figure out
-        $xml = simplexml_load_string($response);
-        $result = (array) $xml;
+        
+        $this->unserializer->unserialize( $response, false, $this->unserializerOptions );
+        $result = $this->unserializer->getUnserializedData();
         
         $errors = array();
         
