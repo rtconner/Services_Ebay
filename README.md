@@ -30,4 +30,4 @@ If anyone out there can help code a few things ..
  - Refactor code to remove dependency on pear/pear_exception
  - Test out more Ebay API calls and add unit tests for them
  
- I'll leave the examples in place for reference, but really we should make lots of unit test files instead.
+I'll leave the examples in place for reference, but really we should make lots of unit test files instead.
