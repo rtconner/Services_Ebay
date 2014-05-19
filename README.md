@@ -11,7 +11,6 @@ http://pear.php.net/package/Services_Ebay/docs
  - Update namespaces from Services_Ebay to \Services\Ebay
  - Reduce dependencies on old pear libraries
  - Remove file includes and depend on  autoloaders
- - In some places update to use pear2 packages
  
 #### Installation
 
@@ -21,8 +20,14 @@ To get the tests/example code to work you need to create examples/config-local.p
 
 #### Wishlist
 
+The Ebay API has changed a lot since this library was written. To get any call to work you probably have some work to do. AddItem was the only
+one I worked on so far. Would be nice if people updated this library as they get calls working (an add the tests)
+
 If anyone out there can help code a few things ..
 
- - Standardize or improve the XML handling (or use a better library than sabre/xml)
+ - Reduce dependency on PEAR in general
  - Refactor code to remove dependency on pear/http_request2
  - Refactor code to remove dependency on pear/pear_exception
+ - Test out more Ebay API calls and add unit tests for them
+ 
+ I'll leave the examples in place for reference, but really we should make lots of unit test files instead.
