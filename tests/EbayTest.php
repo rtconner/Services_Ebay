@@ -31,37 +31,62 @@ class EbayTest extends PHPUnit_Framework_TestCase {
 		
 		$item = \Services\Ebay::loadModel('Item', null, $session);
 		
-		
 		$item->Category = 57882;
+		$item->PrimaryCategory = array('CategoryID'=>57882);
+		$item->ConditionID = 1000;
+		
 		$item->Title = 'Supergirls\'s cape';
 		$item->Description = 'Another test item';
 		$item->Location = 'At my home';
+		$item->StartPrice = '10';
+		$item->PaymentMethods = 'PayPal';
+		$item->PayPalEmailAddress = 'magicalbookseller@yahoo.com';
+		$item->Quantity = 1;
 		$item->MinimumBid = '532.0';
-		$item->ListingDuration = 'Days_3';
+		$item->ListingDuration = 'Days_7';
+		$item->DispatchTimeMax = 3;
 		
-		$item->VisaMaster = 1;
-		
-		$item->ShippingType = 1;
-		$item->CheckoutDetailsSpecified = 1;
 		$item->Currency = 'USD';
 		
 		$item->Country = 'US';
+		$item->Site = 'US';
 		
-		$item->SetShipToLocations(array('US', 'DE', 'GB'));
+		$item->ReturnPolicy = array(
+			'ReturnsAcceptedOption'=>'ReturnsAccepted',
+			'RefundOption'=>'MoneyBack',
+			'ReturnsWithinOption'=>'Days_30',
+			'Description'=>'If you are not satisfied, return the book for refund.',
+			'ShippingCostPaidByOption'=>'Buyer',
+		);
 		
-		$item->addShippingServiceOption(1, 1, 3, 1, array('US'));
+		$item->SetShipToLocations(array('US'));
+		$item->SetShipToLocations(array('CA'));
+		
+		$item->ShippingDetails = array(
+			'ShippingType'=>'Flat',
+			'ShippingServiceOptions'=>array(
+				array(
+					'ShippingServicePriority'=>1,
+					'ShippingService'=>'UPSGround',
+					'FreeShipping'=>'true',
+					'ShippingServiceAdditionalCost'=>0.00,
+				)
+			)
+			
+		);
 		
 		$result = $ebay->AddItem($item);
 		
 		// You could as well call the Add() method on the item directly
 		//$result = $item->Add();
 		
+		$this->assertNotEmpty($result['ItemID']);
 		
-		if ($result === true) {
-			echo 'Item has been added with ItemId: '.$item->Id.' and ends on '.$item->EndTime.'<br />';
-		} else {
-			echo 'An error occured while adding the item.';
-		}
+// 		if ($result) {
+// 			echo 'Item has been added with ItemId: '.$result['ItemID'].' and ends on '.$result['EndTime'];
+// 		} else {
+// 			echo 'An error occured while adding the item.';
+// 		}
 		
 	}
 	

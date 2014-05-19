@@ -7,8 +7,7 @@
 		"php": ">=5.3.0",
 		"ext-curl": "*",
 		"pear/pear_exception": "dev-master",
-		"pear/http_request2": "dev-trunk",
-		"sabre/xml": "0.0.5"
+		"pear/http_request2": "dev-trunk"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

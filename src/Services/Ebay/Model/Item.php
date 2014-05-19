@@ -49,38 +49,10 @@ class Item extends \Services\Ebay\Model
     */
     public function setShipToLocations($ShipToLocations)
     {
-        $this->properties['ShipToLocations'] = array(
-        	                                          'ShipToLocation' => $ShipToLocations
-        	                                        );
+        $this->properties['ShipToLocations'][] = $ShipToLocations;
         return true;
     }
 
-   /**
-    * add a shipping service option
-    *
-    * @param    integer     shipping service, {@link http://developer.ebay.com/DevZone/docs/API_Doc/Appendixes/AppendixN.htm#shippingservices}
-    * @param    integer     priority (1-3)
-    * @param    float       cost for the item
-    * @param    float       cost for an additional item
-    * @return   boolean
-    */
-    public function addShippingServiceOption($ShippingService, $ShippingServicePriority, $ShippingServiceCost, $ShippingServiceAdditionalCost)
-    {
-        $option = array(
-                        'ShippingService'               => $ShippingService,
-                        'ShippingServicePriority'       => $ShippingServicePriority,
-                        'ShippingServiceCost'           => $ShippingServiceCost,
-                        'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
-                    );
-        if (!isset($this->properties['ShippingServiceOptions'])) {
-        	$this->properties['ShippingServiceOptions'] = array(
-        	                                                      'ShippingServiceOption' => array()
-        	                                                   );
-        }
-        array_push($this->properties['ShippingServiceOptions']['ShippingServiceOption'], $option);
-        return true;
-    }
-    
    /**
     * add an international shipping service option
     *
@@ -98,9 +70,7 @@ class Item extends \Services\Ebay\Model
                         'ShippingServicePriority'       => $ShippingServicePriority,
                         'ShippingServiceCost'           => $ShippingServiceCost,
                         'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
-                        'ShipToLocations'               => array(
-                                                                'ShipToLocation' => $ShipToLocations
-                                                                )
+                        'ShipToLocations'               => $ShipToLocations
                     );
         if (!isset($this->properties['InternationalShippingServiceOptions'])) {
         	$this->properties['InternationalShippingServiceOptions'] = array(
@@ -292,4 +262,3 @@ class Item extends \Services\Ebay\Model
         return $call->call($this->session);
     }
 }
-?>

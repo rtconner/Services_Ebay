@@ -1,5 +1,6 @@
 <?php namespace Services\Ebay;
 
+use Services\XML\Serializer;
 use Services\XML\Unserializer;
 
 /**
@@ -347,7 +348,7 @@ class Session
     {
         $this->opts['rootName'] = $verb.'Request';
         $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
-        $this->serializer = new \Services\XML\Serializer($this->opts);
+        $this->serializer = new Serializer($this->opts);
     	
         $request = array(
                             'ErrorLanguage'     => $this->errorLanguage,
@@ -383,21 +384,8 @@ class Session
         $request = array_merge($request, $params);
 
         $this->serializer->serialize($request, $this->serializerOptions);
-
+// print($this->serializer->getSerializedData());die;
         return $this->serializer->getSerializedData();
-        
-        // I don't love this XML building, but it's the best i could figure out
-// 		$writer = new XML\Writer;
-// 		$writer->openMemory();
-// 		$writer->startDocument('1.0', 'UTF-8');
-		
-// 		$writer->startElement($verb.'Request');
-// 		$writer->writeAttribute('xmlns', 'urn:ebay:apis:eBLBaseComponents');
-// 		$writer->write($request);
-// 		$writer->endElement();
-		
-// 		$writer->endDocument();
-// 		return $writer->outputMemory(true);
 
     }
 

@@ -104,16 +104,10 @@ class AddItem extends \Services\Ebay\Call
     public function call(\Services\Ebay\Session $session, $parseResult = true)
     {
         $return = parent::call($session);
-
-        if (isset($return['ItemID'])) {
-            $this->item->Id = $return['ItemID'];
-            $this->item->StartTime = $return['StartTime'];
-            $this->item->EndTime = $return['EndTime'];
-            $this->item->Fees = $return['Fees']['Fee'];
         
-            return true;
+        if (isset($return['ItemID'])) {
+            return $return;
         }
         return false;
     }
 }
-?>
