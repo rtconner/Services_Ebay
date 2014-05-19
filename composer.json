@@ -1,6 +1,6 @@
 {
     "name": "rtconner/services_ebay",
-    "description": "Modernized version of the old pear/Services_XML library. Interfaces to eBay's XML-API.",
+    "description": "Modernized version of the old pear/Services_Ebay library. Interfaces to eBay's XML-API.",
     "license": "PHP License",
     "type": "library",
     "require": {
